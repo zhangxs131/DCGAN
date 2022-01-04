@@ -1,5 +1,7 @@
 # DCGAN
 
+本项目为学习DCGAN编写，来源于pytorch tutorials https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html
+
 main.py是一个训练测试例子，里面包括数据集读取，生成器，辨别器的定义，已经整个训练步骤
 
     使用的数据为人脸的数据集，地址为http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html

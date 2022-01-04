@@ -14,3 +14,6 @@ main.py是一个训练测试例子，里面包括数据集读取，生成器，�
 generate.py 是使用训练好的生成器模型netG.pth进行生成，并显示图片的函数
 
 netG.pth netD.pth 分别是训练10epoch得到的模型，效果一般可以多训练几轮，10个epoch差不多单gpu训练了15分钟左右
+
+formal_main.py 是正式版的DCGAN教程代码，支持使用多个数据集以及自己的数据集。
+代码源地址： https://github.com/pytorch/examples/tree/master/dcgan

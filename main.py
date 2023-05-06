@@ -1,34 +1,17 @@
 from __future__ import print_function
-#%matplotlib inline
-import argparse
-import os
+
 import random
 import torch
-from torch.autograd.grad_mode import F
 import torch.nn as nn
-from torch.nn.modules import normalization
-from torch.nn.modules.activation import LeakyReLU, Sigmoid
-from torch.nn.modules.batchnorm import BatchNorm2d
-from torch.nn.modules.conv import Conv2d
 import torch.nn.parallel
-import torch.backends.cudnn as cudnn
 import torch.optim as optim
-from torch.optim import optimizer
 import torch.utils.data
 import torchvision.datasets as vdataset
 import torchvision.transforms as transfroms
 import torchvision.utils as vutils
-import numpy as np
-import matplotlib.pylab as plt
-import matplotlib.animation as animation
-# from IPython.display import HTML
 
-manualSeed=999
-print('Random Seed',manualSeed)
-random.seed(manualSeed)
-torch.manual_seed(manualSeed)
 
-def get_dataloader(datapath,image_size,batch_size,workers):
+def get_dataloader(datapath,image_size,batch_size,workers=2):
     dataset=vdataset.ImageFolder(
         root=datapath,
         transform=transfroms.Compose([
@@ -43,13 +26,7 @@ def get_dataloader(datapath,image_size,batch_size,workers):
     )
     return dataloader
 
-def weights_init(m):
-    classname=m.__class__.__name__
-    if classname.find('Conv')!=-1:
-        nn.init.normal_(m.weight.data,0.0,0.02)
-    elif classname.find('BatchNorm')!=-1:
-        nn.init.normal_(m.weight.data,1.0,0.02)
-        nn.init.constant_(m.bias.data,0)
+
 
 class Generator(nn.Module):
     def __init__(self,nz,nc,ngf,ngpu):
